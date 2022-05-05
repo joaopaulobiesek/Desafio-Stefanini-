@@ -1,4 +1,4 @@
-﻿using Example.Application.Common;
+﻿using Example.API._Common;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 

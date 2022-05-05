@@ -1,7 +1,7 @@
-﻿using Example.API.Data;
+﻿using Example.API._Common;
+using Example.API.Data;
 using Example.API.Services.Models.Request.City;
 using Example.API.Services.Models.Response.City;
-using Example.Application.Common;
 
 namespace Example.API.Services
 {

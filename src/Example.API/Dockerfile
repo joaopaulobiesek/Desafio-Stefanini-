@@ -7,9 +7,9 @@ EXPOSE 80
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
 COPY ["src/Example.API/Example.API.csproj", "src/Example.API/"]
-COPY ["src/Example.Application/Example.Application.csproj", "src/Example.Application/"]
-COPY ["src/Example.Infra.Data/Example.Infra.Data.csproj", "src/Example.Infra.Data/"]
-COPY ["src/Example.Domain/Example.Domain.csproj", "src/Example.Domain/"]
+#COPY ["src/Example.Application/Example.Application.csproj", "src/Example.Application/"]
+#COPY ["src/Example.Infra.Data/Example.Infra.Data.csproj", "src/Example.Infra.Data/"]
+#COPY ["src/Example.Domain/Example.Domain.csproj", "src/Example.Domain/"]
 RUN dotnet restore "src/Example.API/Example.API.csproj"
 COPY . .
 WORKDIR "/src/src/Example.API"
