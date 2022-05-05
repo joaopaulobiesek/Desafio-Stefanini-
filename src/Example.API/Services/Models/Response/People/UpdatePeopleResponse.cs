@@ -1,6 +1,8 @@
-﻿namespace Example.API.Services.Models.Response.People
+﻿using Example.API._Common;
+
+namespace Example.API.Services.Models.Response.People
 {
-    public class UpdatePeopleResponse
+    public class UpdatePeopleResponse : BaseResponse
     {
     }
 }

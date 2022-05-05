@@ -1,6 +1,10 @@
-﻿namespace Example.API.Services.Models.Response.People
+﻿using Example.API._Common;
+using Example.API.Services.Models.Dtos;
+
+namespace Example.API.Services.Models.Response.People
 {
-    public class GetByIdPeopleResponse
+    public class GetByIdPeopleResponse : BaseResponse
     {
+        public PeopleDto Example { get; set; }
     }
 }

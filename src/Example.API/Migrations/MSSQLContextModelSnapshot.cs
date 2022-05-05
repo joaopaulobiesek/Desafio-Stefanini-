@@ -41,7 +41,7 @@ namespace Example.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City", "dbo");
                 });
 
             modelBuilder.Entity("Example.API.Models.People", b =>
@@ -72,7 +72,7 @@ namespace Example.API.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Peoples");
+                    b.ToTable("People", "dbo");
                 });
 
             modelBuilder.Entity("Example.API.Models.People", b =>

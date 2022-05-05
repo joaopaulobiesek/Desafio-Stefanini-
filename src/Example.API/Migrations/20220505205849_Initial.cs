@@ -8,8 +8,12 @@ namespace Example.API.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "dbo");
+
             migrationBuilder.CreateTable(
-                name: "Cities",
+                name: "City",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -19,11 +23,12 @@ namespace Example.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cities", x => x.Id);
+                    table.PrimaryKey("PK_City", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Peoples",
+                name: "People",
+                schema: "dbo",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -35,28 +40,32 @@ namespace Example.API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Peoples", x => x.Id);
+                    table.PrimaryKey("PK_People", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Peoples_Cities_CityId",
+                        name: "FK_People_City_CityId",
                         column: x => x.CityId,
-                        principalTable: "Cities",
+                        principalSchema: "dbo",
+                        principalTable: "City",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Peoples_CityId",
-                table: "Peoples",
+                name: "IX_People_CityId",
+                schema: "dbo",
+                table: "People",
                 column: "CityId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Peoples");
+                name: "People",
+                schema: "dbo");
 
             migrationBuilder.DropTable(
-                name: "Cities");
+                name: "City",
+                schema: "dbo");
         }
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Example.API.Migrations
 {
     [DbContext(typeof(MSSQLContext))]
-    [Migration("20220505192435_Initial")]
+    [Migration("20220505205849_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,7 +43,7 @@ namespace Example.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Cities");
+                    b.ToTable("City", "dbo");
                 });
 
             modelBuilder.Entity("Example.API.Models.People", b =>
@@ -74,7 +74,7 @@ namespace Example.API.Migrations
 
                     b.HasIndex("CityId");
 
-                    b.ToTable("Peoples");
+                    b.ToTable("People", "dbo");
                 });
 
             modelBuilder.Entity("Example.API.Models.People", b =>
