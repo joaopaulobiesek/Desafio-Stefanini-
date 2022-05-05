@@ -43,7 +43,7 @@ namespace Example.API.Data
 
             orderConfiguration.HasKey(o => o.Id);
             orderConfiguration.Property(o => o.Id).UseIdentityColumn();
-            //orderConfiguration.Property(o => o.CityId).IsRequired();
+            orderConfiguration.Property(o => o.CityId).IsRequired();
             orderConfiguration.Property(o => o.Name).IsRequired();
             orderConfiguration.Property(o => o.CPF).IsRequired();
             orderConfiguration.Property(o => o.Age).IsRequired();

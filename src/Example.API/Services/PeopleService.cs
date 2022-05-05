@@ -1,7 +1,10 @@
 ﻿using Example.API._Common;
 using Example.API.Data;
+using Example.API.Models;
+using Example.API.Services.Models.Dtos;
 using Example.API.Services.Models.Request.People;
 using Example.API.Services.Models.Response.People;
+using Microsoft.EntityFrameworkCore;
 
 namespace Example.API.Services
 {
@@ -14,29 +17,67 @@ namespace Example.API.Services
             _context = context;
         }
 
-        public Task<CreatePeopleResponse> CreateAsync(CreatePeopleRequest request)
+        public async Task<CreatePeopleResponse> CreateAsync(CreatePeopleRequest request)
         {
-            throw new NotImplementedException();
+            if (request == null)
+                throw new ArgumentException("Request empty!");
+
+            var newExample = People.Create(request.CityId, request.Name, request.CPF, request.Age);
+
+            _context.Peoples.Add(newExample);
+
+            await _context.SaveChangesAsync();
+
+            return new CreatePeopleResponse() { Id = newExample.Id };
         }
 
-        public Task<DeletePeopleResponse> DeleteAsync(int id)
+        public async Task<DeletePeopleResponse> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await _context.Peoples.FirstOrDefaultAsync(item => item.Id == id);
+
+            if (entity != null)
+            {
+                _context.Remove(entity);
+                await _context.SaveChangesAsync();
+            }
+
+            return new DeletePeopleResponse();
         }
 
-        public Task<GetAllPeopleResponse> GetAllAsync()
+        public async Task<GetAllPeopleResponse> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var entity = await _context.Peoples.Include(d => d.City).ToListAsync();
+            return new GetAllPeopleResponse()
+            {
+                Peoples = entity != null ? entity.Select(a => (PeopleDto)a).ToList() : new List<PeopleDto>()
+            };
         }
 
-        public Task<GetByIdPeopleResponse> GetByIdAsync(int id)
+        public async Task<GetByIdPeopleResponse> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var response = new GetByIdPeopleResponse();
+
+            var entity = await _context.Peoples.Include(d => d.City).FirstOrDefaultAsync(item => item.Id == id);
+
+            if (entity != null) response.Example = (PeopleDto)entity;
+
+            return response;
         }
 
-        public Task<UpdatePeopleResponse> UpdateAsync(int id, UpdatePeopleRequest request)
+        public async Task<UpdatePeopleResponse> UpdateAsync(int id, UpdatePeopleRequest request)
         {
-            throw new NotImplementedException();
+            if (request == null)
+                throw new ArgumentException("Request empty!");
+
+            var entity = await _context.Peoples.FirstOrDefaultAsync(item => item.Id == id);
+
+            if (entity != null)
+            {
+                entity.Update(request.CityId, request.Name, request.CPF, request.Age);
+                await _context.SaveChangesAsync();
+            }
+
+            return new UpdatePeopleResponse();
         }
     }
 }
