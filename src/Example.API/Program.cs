@@ -2,7 +2,19 @@ using Example.API.Data;
 using Example.API.Services;
 using Microsoft.EntityFrameworkCore;
 
+var ErrorCORS = "_ErrorCORS";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: ErrorCORS,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost",
+                                              "http://localhost:4200").AllowAnyMethod();
+                      });
+});
 
 // Add services to the container.
 
@@ -30,6 +42,8 @@ using (var scope = app.Services.CreateScope())
     var dataContext = scope.ServiceProvider.GetRequiredService<MSSQLContext>();
     dataContext.Database.Migrate();
 }
+
+app.UseCors(ErrorCORS);
 
 app.UseAuthorization();
 

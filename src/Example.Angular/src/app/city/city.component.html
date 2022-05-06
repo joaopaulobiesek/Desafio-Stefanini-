@@ -1,0 +1,20 @@
+<section class="container">
+  <h2 class="titulo">Transferências</h2>
+  <table class="tabela">
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Id</th>
+      <th class="tabela__cabecalho__conteudo">City</th>
+      <th class="tabela__cabecalho__conteudo">UF</th>
+    </thead>
+    <tbody *ngIf="cities?.length > 0; else listaVazia">
+      <tr class="tabela__linha" *ngFor="let city of cities">
+        <td class="tabela__conteudo">{{ city.Id  }}</td>
+        <td class="tabela__conteudo">{{ city.City }}</td>
+        <td class="tabela__conteudo">{{ city.UF }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhuma operaçao cadastrada</p>
+  </ng-template>
+</section>
