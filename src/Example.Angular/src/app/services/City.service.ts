@@ -1,20 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CityDto } from './Dtos/CityDto';
+import { CityObject, CityDto, CityOneObject } from './Dtos/CityDto';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CityService {
-  private citys: CityDto[];
   private url = 'http://51.222.56.238:5012/api/City';
 
-  constructor(private httpClient: HttpClient) {
-    this.citys = [];
+  constructor(private httpClient: HttpClient) {}
+
+  getAll(): Observable<CityObject> {
+    return this.httpClient.get<CityObject>(this.url);
   }
 
-  getAll(): Observable<CityDto[]>{
-    return this.httpClient.get<CityDto[]>(this.url);
+  getById(id: number): Observable<CityOneObject> {
+    return this.httpClient.get<CityOneObject>(this.url+ '/' + id);
+  }
+
+  postCity(city: CityDto): Observable<CityDto> {
+    return this.httpClient.post<CityDto>(this.url, city);
+  }
+
+  putCity(city: CityDto): Observable<CityDto> {
+    return this.httpClient.put<CityDto>(this.url + '/' + city.id, city);
+  }
+
+  deleteCity(id: number) {
+    this.httpClient.delete(this.url + '/' + id);
   }
 }

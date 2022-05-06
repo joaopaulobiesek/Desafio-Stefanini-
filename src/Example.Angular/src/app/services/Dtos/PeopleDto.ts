@@ -1,4 +1,4 @@
-import { CityDto } from "./CityDto";
+import { CityDto } from './CityDto';
 
 export interface PeopleDto {
   id: number;
@@ -6,4 +6,10 @@ export interface PeopleDto {
   name: string;
   cpf: string;
   age: number;
+}
+
+export interface PeopleObject {
+  peoples: PeopleDto[];
+  success: boolean;
+  error?: any;
 }

@@ -8,12 +8,15 @@ import { AppComponent } from './app.component';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { PeopleComponent } from './people/people.component';
-import { CityComponent } from './city/city.component';
+import { CityComponent } from './city/list/city.component';
+import { RegisterCityComponent } from './city/register/registerCity.component';
+import { EditCityComponent } from './city/edit/editCity.component';
+import { DeleteCityComponent } from './city/delete/deleteCity.component';
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
-  declarations: [AppComponent, PeopleComponent, CityComponent],
+  declarations: [AppComponent, PeopleComponent, CityComponent, RegisterCityComponent, EditCityComponent, DeleteCityComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     {

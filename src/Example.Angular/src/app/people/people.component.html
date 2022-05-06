@@ -1,1 +1,26 @@
-<p>people works!</p>
+<section class="container">
+  <h2 class="titulo2">Peoples</h2>
+  <table class="tabela2">
+    <thead class="tabela2__cabecalho">
+      <th class="tabela2__cabecalho__conteudo">Id</th>
+      <th class="tabela2__cabecalho__conteudo">City</th>
+      <th class="tabela2__cabecalho__conteudo">Name</th>
+      <th class="tabela2__cabecalho__conteudo">Age</th>
+      <th class="tabela2__cabecalho__conteudo">CPF</th>
+    </thead>
+    <tbody *ngIf="peoples?.length > 0; else listaVazia">
+      <tr class="tabela2__linha" *ngFor="let people of peoples">
+        <td class="tabela2__conteudo">{{ people.id }}</td>
+        <td class="tabela2__conteudo">
+          {{ people.city.name }} -{{ people.city.uf }}
+        </td>
+        <td class="tabela2__conteudo">{{ people.name }}</td>
+        <td class="tabela2__conteudo">{{ people.age }}</td>
+        <td class="tabela2__conteudo">{{ people.cpf }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhuma operaçao cadastrada</p>
+  </ng-template>
+</section>

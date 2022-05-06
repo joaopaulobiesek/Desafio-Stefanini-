@@ -1,0 +1,27 @@
+<section class="container">
+  <h2 class="titulo">Cities</h2>
+  <div class="botao-wrapper">
+    <a class="botao" routerLink="/CityRegister">Register</a>
+  </div>
+  <table class="tabela">
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Id</th>
+      <th class="tabela__cabecalho__conteudo">City</th>
+      <th class="tabela__cabecalho__conteudo">UF</th>
+      <th class="tabela__cabecalho__conteudo">Edit</th>
+      <th class="tabela__cabecalho__conteudo">Delete</th>
+    </thead>
+    <tbody *ngIf="cities?.length > 0; else listaVazia">
+      <tr class="tabela__linha" *ngFor="let city of cities">
+        <td class="tabela__conteudo">{{ city.id }}</td>
+        <td class="tabela__conteudo">{{ city.name }}</td>
+        <td class="tabela__conteudo">{{ city.uf }}</td>
+        <td class="tabela__conteudo"><a class="botao" routerLink="/CityEdit/{{ city.id }}">Edit</a></td>
+        <td class="tabela__conteudo"><a class="botao" routerLink="/CityDelete/{{ city.id }}">Del</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhuma operaçao cadastrada</p>
+  </ng-template>
+</section>
