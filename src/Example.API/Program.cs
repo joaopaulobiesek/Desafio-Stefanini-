@@ -2,18 +2,18 @@ using Example.API.Data;
 using Example.API.Services;
 using Microsoft.EntityFrameworkCore;
 
-var ErrorCORS = "_ErrorCORS";
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(name: ErrorCORS,
-                      policy =>
-                      {
-                          policy.WithOrigins("http://localhost",
-                                              "http://localhost:4200").AllowAnyMethod();
-                      });
+    options.AddPolicy(
+        name: "AllowOrigin",
+        builders =>
+        {
+            builders.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader();
+        });
 });
 
 // Add services to the container.
@@ -30,6 +30,8 @@ builder.Services.AddDbContext<MSSQLContext>(o => o.UseSqlServer(builder.Configur
 
 var app = builder.Build();
 
+app.UseCors("AllowOrigin");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -42,8 +44,6 @@ using (var scope = app.Services.CreateScope())
     var dataContext = scope.ServiceProvider.GetRequiredService<MSSQLContext>();
     dataContext.Database.Migrate();
 }
-
-app.UseCors(ErrorCORS);
 
 app.UseAuthorization();
 
