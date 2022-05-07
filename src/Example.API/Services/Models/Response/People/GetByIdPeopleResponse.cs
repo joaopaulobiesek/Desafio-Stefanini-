@@ -5,6 +5,6 @@ namespace Example.API.Services.Models.Response.People
 {
     public class GetByIdPeopleResponse : BaseResponse
     {
-        public PeopleDto Example { get; set; }
+        public PeopleDto People { get; set; }
     }
 }

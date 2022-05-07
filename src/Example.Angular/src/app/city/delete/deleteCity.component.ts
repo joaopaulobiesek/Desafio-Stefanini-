@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CityService } from 'src/app/services/City.service';
-import { CityOneObject } from 'src/app/services/Dtos/CityDto';
+import { CityOneObject, CityDelete } from 'src/app/services/Dtos/CityDto';
 
 @Component({
   selector: 'app-deleteCity',
@@ -10,14 +10,14 @@ import { CityOneObject } from 'src/app/services/Dtos/CityDto';
 })
 export class DeleteCityComponent implements OnInit {
   id: number;
-  name: string;
-  uf: string;
+  name: string = "";
+  uf: string = "";
 
   constructor(
     private service: CityService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -27,8 +27,9 @@ export class DeleteCityComponent implements OnInit {
     });
   }
 
-  Delete() {
-    this.service.deleteCity(this.id);
-    this.router.navigateByUrl('City');
+  async  Delete() {
+    await this.service.deleteCity(this.id).subscribe((city: CityDelete) => {
+      if(city.success) this.router.navigateByUrl('City');
+    });
   }
 }

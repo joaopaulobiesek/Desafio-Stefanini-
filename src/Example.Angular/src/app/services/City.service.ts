@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CityObject, CityDto, CityOneObject } from './Dtos/CityDto';
+import { CityObject, CityDto, CityOneObject,CityDelete } from './Dtos/CityDto';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -27,7 +27,7 @@ export class CityService {
     return this.httpClient.put<CityDto>(this.url + '/' + city.id, city);
   }
 
-  deleteCity(id: number) {
-    this.httpClient.delete(this.url + '/' + id);
+  deleteCity(id: number): Observable<CityDelete> {
+   return this.httpClient.delete<CityDelete>(this.url + '/' + id);
   }
 }

@@ -1,0 +1,33 @@
+<section class="container2">
+  <h2 class="titulo">Peoples</h2>
+  <div class="botao-wrapper">
+    <a class="botao" style="text-align:center" routerLink="/PeopleRegister">Register</a>
+  </div><br />
+  <table class="tabela">
+    <thead class="tabela__cabecalho">
+      <th class="tabela__cabecalho__conteudo">Id</th>
+      <th class="tabela__cabecalho__conteudo">City</th>
+      <th class="tabela__cabecalho__conteudo">Name</th>
+      <th class="tabela__cabecalho__conteudo">Age</th>
+      <th class="tabela__cabecalho__conteudo">CPF</th>
+      <th class="tabela__cabecalho__conteudo">Edit</th>
+      <th class="tabela__cabecalho__conteudo">Delete</th>
+    </thead>
+    <tbody *ngIf="peoples?.length > 0; else listaVazia">
+      <tr class="tabela__linha" *ngFor="let people of peoples">
+        <td class="tabela__conteudo">{{ people.id }}</td>
+        <td class="tabela__conteudo">
+          {{ people.city.name }} -{{ people.city.uf }}
+        </td>
+        <td class="tabela__conteudo">{{ people.name }}</td>
+        <td class="tabela__conteudo">{{ people.age }}</td>
+        <td class="tabela__conteudo">{{ people.cpf }}</td>
+        <td class="tabela__conteudo"><a class="botao" routerLink="/PeopleEdit/{{ people.id }}">Edit</a></td>
+        <td class="tabela__conteudo"><a class="botao" routerLink="/PeopleDelete/{{ people.id }}">Del</a></td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #listaVazia>
+    <p>Nenhuma operaçao cadastrada</p>
+  </ng-template>
+</section>

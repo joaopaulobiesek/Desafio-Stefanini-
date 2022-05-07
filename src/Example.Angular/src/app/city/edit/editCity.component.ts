@@ -10,11 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditCityComponent implements OnInit{
   id: number;
-  name: string;
-  uf: string;
+  name: string = "";
+  uf: string = "";
 
-  constructor(private service: CityService, private router: Router,private route: ActivatedRoute) {
-  }
+  constructor(private service: CityService, private router: Router,private route: ActivatedRoute) {}
 
   async ngOnInit() {
     this.id = this.route.snapshot.params['id'];

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PeopleObject } from './Dtos/PeopleDto';
+import { PeopleObject, PeopleRegisterDto, PeopleOneObject, PeopleDto, PeopleDelete } from './Dtos/PeopleDto';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +9,25 @@ import { PeopleObject } from './Dtos/PeopleDto';
 export class PeopleService {
   private url = 'http://51.222.56.238:5012/api/People';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<PeopleObject> {
     return this.httpClient.get<PeopleObject>(this.url);
+  }
+
+  getById(id: number): Observable<PeopleOneObject> {
+    return this.httpClient.get<PeopleOneObject>(this.url + '/' + id);
+  }
+
+  postPeople(people: PeopleRegisterDto): Observable<PeopleRegisterDto> {
+    return this.httpClient.post<PeopleRegisterDto>(this.url, people);
+  }
+
+  putPeople(people: PeopleDto): Observable<PeopleDto> {
+    return this.httpClient.put<PeopleDto>(this.url + '/' + people.id, people);
+  }
+
+  deletePeople(id: number): Observable<PeopleDelete> {
+    return this.httpClient.delete<PeopleDelete>(this.url + '/' + id);
   }
 }

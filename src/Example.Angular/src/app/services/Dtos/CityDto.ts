@@ -16,5 +16,10 @@
     error?: any;
 }
 
+export interface CityDelete {
+  success: boolean;
+  error?: any;
+}
+
 
 
