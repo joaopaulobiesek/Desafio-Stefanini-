@@ -6,7 +6,7 @@ import { PeopleDelete, PeopleOneObject } from 'src/app/services/Dtos/PeopleDto';
 import { PeopleService } from 'src/app/services/People.service';
 
 @Component({
-  selector: 'app-delete',
+  selector: 'app-deletePeople',
   templateUrl: './deletePeople.component.html',
   styleUrls: ['./deletePeople.component.scss']
 })
