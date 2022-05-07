@@ -14,11 +14,12 @@ import { EditCityComponent } from './city/edit/editCity.component';
 import { DeleteCityComponent } from './city/delete/deleteCity.component';
 import { RegisterPeopleComponent } from './people/register/registerPeople.component';
 import { EditPeopleComponent } from './people/edit/editPeople.component';
+import { DeletePeopleComponent } from './people/delete/deletePeople.component';
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
-  declarations: [AppComponent, PeopleComponent, CityComponent, RegisterCityComponent, EditCityComponent, DeleteCityComponent, RegisterPeopleComponent, EditPeopleComponent],
+  declarations: [AppComponent, PeopleComponent, CityComponent, RegisterCityComponent, EditCityComponent, DeleteCityComponent, RegisterPeopleComponent, EditPeopleComponent, DeletePeopleComponent],
   imports: [BrowserModule, FormsModule, HttpClientModule, AppRoutingModule],
   providers: [
     {

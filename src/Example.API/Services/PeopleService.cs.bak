@@ -59,7 +59,7 @@ namespace Example.API.Services
 
             var entity = await _context.Peoples.Include(d => d.City).FirstOrDefaultAsync(item => item.Id == id);
 
-            if (entity != null) response.People = (PeopleDto)entity;
+            if (entity != null) response.Example = (PeopleDto)entity;
 
             return response;
         }

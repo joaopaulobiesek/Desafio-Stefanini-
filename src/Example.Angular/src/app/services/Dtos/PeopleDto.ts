@@ -15,6 +15,14 @@ export interface PeopleRegisterDto {
   age: number;
 }
 
+export interface PeopleUpdateDto {
+  id: number;
+  cityId: number;
+  name: string;
+  cpf: string;
+  age: number;
+}
+
 export interface PeopleObject {
   peoples: PeopleDto[];
   success: boolean;
